@@ -1,7 +1,9 @@
+import React, {useContext} from "react";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
 
+import {TransactionContext} from "../context/TransactionContext";
 import { Loader } from "./";
 
 const commonStyles =
@@ -19,6 +21,9 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 );
 
 const Welcome = () => {
+	const {value} = useContext(TransactionContext);
+	console.log(value)
+
 	const connectWallet = () => {};
 	const handleSubmit = () => {};
 
@@ -55,9 +60,9 @@ const Welcome = () => {
 						<div className="flex justify-between flex-col w-full h-full">
 							<div className="flex justify-between items-start">
 								<div className="w-10 h-10 rounded-full border-2 border-white flex justify-center items-center">
-									<SiEthereum fontsize={21} color="#fff" />
+									<SiEthereum fontSize={21} color="#fff" />
 								</div>
-								<BsInfoCircle fontsize={17} color="#fff" />
+								<BsInfoCircle fontSize={17} color="#fff" />
 							</div>
 							<div>
 								<p className="text-white font-light text-sm">Address</p>
