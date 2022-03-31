@@ -1,9 +1,9 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
 
-import {TransactionContext} from "../context/TransactionContext";
+import { TransactionContext } from "../context/TransactionContext";
 import { Loader } from "./";
 
 const commonStyles =
@@ -21,10 +21,8 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 );
 
 const Welcome = () => {
-	const {value} = useContext(TransactionContext);
-	console.log(value)
+	const { connectWallet, connectedAccount } = useContext(TransactionContext);
 
-	const connectWallet = () => {};
 	const handleSubmit = () => {};
 
 	return (
@@ -38,13 +36,17 @@ const Welcome = () => {
 						Explore the crypto world. Buy and sell cryptocurrencies easily on
 						Krypto.
 					</p>
-					<button
-						type="button"
-						onClick={connectWallet}
-						className="flex flex-row justify-center items-center my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd]"
-					>
-						<p className="text-white text-base font-semibold">Connect Wallet</p>
-					</button>
+					{!connectedAccount && (
+						<button
+							type="button"
+							onClick={connectWallet}
+							className="flex flex-row justify-center items-center my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd]"
+						>
+							<p className="text-white text-base font-semibold">
+								Connect Wallet
+							</p>
+						</button>
+					)}
 					<div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
 						<div className={`rounded-tl-2xl ${commonStyles}`}>Reliability</div>
 						<div className={commonStyles}>Security</div>
@@ -98,8 +100,18 @@ const Welcome = () => {
 							type="text"
 							handleChange={() => {}}
 						/>
-            <div className="h-[1px] w-full bg-gray-400 my-2"/>
-            {false ? ( <Loader />) : ( <button type="button" onClick={handleSubmit} className="text-white w-full mt-2 border-[1px] p=2 border-[#3d4f7c] rounded-full cursor-pointer">Send Now</button>)}
+						<div className="h-[1px] w-full bg-gray-400 my-2" />
+						{false ? (
+							<Loader />
+						) : (
+							<button
+								type="button"
+								onClick={handleSubmit}
+								className="text-white w-full mt-2 border-[1px] p=2 border-[#3d4f7c] rounded-full cursor-pointer"
+							>
+								Send Now
+							</button>
+						)}
 					</div>
 				</div>
 			</div>
